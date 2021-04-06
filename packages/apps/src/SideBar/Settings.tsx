@@ -30,7 +30,7 @@ function Settings({ className }: Props): React.ReactElement<Props> {
       </div>
       <div style={{ position: "fixed", bottom: "65px", left: "20px" }}>
         <a href="https://app.element.io/#/room/#reef:matrix.org" target="_blank">
-          Matrix.org support channel
+          Matrix.org chat
         </a>
       </div>
       <div className={`apps--SideBar-settings ${className || ""}`}>
