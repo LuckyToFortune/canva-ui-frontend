@@ -1,7 +1,7 @@
 // Copyright 2017-2020 @canvas-ui/react-api authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { Provider } from "@acala-network/bodhi";
+import { Provider } from "@reef-defi/evm-provider";
 import { ApiPromise } from "@polkadot/api/promise";
 import { SubmittableExtrinsicFunction } from "@polkadot/api/promise/types";
 import { InjectedExtension } from "@polkadot/extension-inject/types";

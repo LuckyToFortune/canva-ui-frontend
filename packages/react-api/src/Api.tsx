@@ -24,7 +24,7 @@ import TestingSigner from "@canvas-ui/react-signer/TestingSigner";
 import { formatBalance, isTestChain } from "@polkadot/util";
 import { setSS58Format } from "@polkadot/util-crypto";
 import { defaults as addressDefaults } from "@polkadot/util-crypto/address/defaults";
-import { Provider } from "@acala-network/bodhi";
+import { Provider } from "@reef-defi/evm-provider";
 import ApiContext from "./ApiContext";
 import registry from "./typeRegistry";
 import ERC20 from "./ERC20";
@@ -144,7 +144,7 @@ async function loadOnReady(api: ApiPromise, store?: KeyringStore): Promise<ApiSt
   const ss58Format =
     uiSettings.prefix === -1 ? properties.ss58Format.unwrapOr(DEFAULT_SS58).toNumber() : uiSettings.prefix;
   const tokenSymbol = properties.tokenSymbol.unwrapOr(undefined)?.toString();
-  const tokenDecimals = properties.tokenDecimals.unwrapOr(DEFAULT_DECIMALS).toNumber();
+  const tokenDecimals = properties.tokenDecimals.unwrapOr([DEFAULT_DECIMALS])[0].toNumber();
   const isDevelopment = systemChainType.isDevelopment || systemChainType.isLocal || isTestChain(systemChain);
 
   // explicitly override the ss58Format as specified

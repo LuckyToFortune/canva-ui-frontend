@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import { ComponentProps as Props } from "@canvas-ui/apps/types";
-import { Signer as EvmSigner } from "@acala-network/bodhi";
+import { Signer as EvmSigner } from "@reef-defi/evm-provider";
 import { decodeAddress } from "@polkadot/util-crypto";
 import { keyring } from "@polkadot/ui-keyring";
 import {
@@ -261,7 +261,13 @@ function Call({ className, navigateTo }: Props): React.ReactElement<Props> | nul
               value={messageIndex}
             />
             <ContractParams onChange={setValues} params={params} values={values} />
-            <InputNumber bitLength={128} isError={!isPaymentValid} label={t<string>("value")} onChange={setPayment} value={payment} />
+            <InputNumber
+              bitLength={128}
+              isError={!isPaymentValid}
+              label={t<string>("value")}
+              onChange={setPayment}
+              value={payment}
+            />
             <InputNumber
               isError={!isGasLimitValid}
               label={t<string>("gasLimit")}

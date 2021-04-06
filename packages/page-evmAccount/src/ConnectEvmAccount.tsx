@@ -1,7 +1,7 @@
 // Copyright 2017-2020 @canvas-ui/app-execute authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { Signer as EvmSigner } from "@acala-network/bodhi";
+import { Signer as EvmSigner } from "@reef-defi/evm-provider";
 import { ComponentProps as Props } from "@canvas-ui/apps/types";
 import { Button, InputAddress, Input, Toggle, InputEvmAddress } from "@canvas-ui/react-components";
 import { testAccount } from "@canvas-ui/react-components/InputEvmAddress/testAccount";

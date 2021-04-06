@@ -1,7 +1,7 @@
 // Copyright 2017-2020 @canvas-ui/app-execute authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { Signer as EvmSigner } from "@acala-network/bodhi";
+import { Signer as EvmSigner } from "@reef-defi/evm-provider";
 import { Code } from "@canvas-ui/apps/types";
 import { Button, ContractParams, InputAddress, InputName, InputNumber, Labelled } from "@canvas-ui/react-components";
 import { ELEV_2_CSS } from "@canvas-ui/react-components/styles/constants";
@@ -88,7 +88,7 @@ function New({ allCodes, className, navigateTo }: Props): React.ReactElement<Pro
       const factory = new ContractFactory(abi, bytecode, wallet);
       const contract = await factory.deploy(...values.map((x) => x.value), {
         gasLimit: "3000000000",
-        value: endowment?.toString()
+        value: endowment?.toString(),
       });
 
       await contract.deployed();
@@ -103,7 +103,7 @@ function New({ allCodes, className, navigateTo }: Props): React.ReactElement<Pro
       });
 
       showNotification({
-        action: 'Deploy Contract',
+        action: "Deploy Contract",
         status: "success",
       });
 
@@ -149,7 +149,13 @@ function New({ allCodes, className, navigateTo }: Props): React.ReactElement<Pro
           </div>
         </Labelled>
         <ContractParams onChange={setValues} params={params || []} values={values} />
-        <InputNumber bitLength={128} isError={!isEndowmentValid} label={t<string>("value")} onChange={setEndowment} value={endowment} />
+        <InputNumber
+          bitLength={128}
+          isError={!isEndowmentValid}
+          label={t<string>("value")}
+          onChange={setEndowment}
+          value={endowment}
+        />
         <InputNumber isError={!isGasLimitValid} label={t<string>("gasLimit")} onChange={setGasLimit} value={gasLimit} />
         <Button.Group>
           <Button
