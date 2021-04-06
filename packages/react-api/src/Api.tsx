@@ -171,7 +171,12 @@ async function loadOnReady(api: ApiPromise, store?: KeyringStore): Promise<ApiSt
 
   (keyring as any).initKeyring(options);
 
-  for (const { name, address, abi } of [].reverse()) {
+  for (const { name, address, abi } of [
+    {
+      name: "REEF ERC-20",
+      address: "0x0000000000000000000000000000000000000800",
+    },
+  ].reverse()) {
     const json = {
       contract: {
         abi: abi || ERC20,
