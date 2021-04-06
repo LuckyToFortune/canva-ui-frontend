@@ -3,27 +3,26 @@
 
 /* eslint-disable camelcase */
 
-const fs = require('fs');
-const path = require('path');
-const merge = require('webpack-merge');
-const baseConfig = require('./webpack.base.config');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const fs = require("fs");
+const path = require("path");
+const merge = require("webpack-merge");
+const baseConfig = require("./webpack.base.config");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 const context = __dirname;
-const hasPublic = fs.existsSync(path.join(context, 'public'));
+const hasPublic = fs.existsSync(path.join(context, "public"));
 
-const ENV = process.env.NODE_ENV || 'development';
+const ENV = process.env.NODE_ENV || "development";
 
-module.exports = merge(
-  baseConfig(ENV, context),
-  {
-    devtool: false,
-    plugins: [
-      new HtmlWebpackPlugin({
-        PAGE_TITLE: 'Acala-EVM',
-        inject: true,
-        template: path.join(context, `${hasPublic ? 'public/' : ''}index.html`)
-      })
-    ]
-  }
-);
+module.exports = merge(baseConfig(ENV, context), {
+  devtool: "source-map",
+  plugins: [
+    new HtmlWebpackPlugin({
+      PAGE_TITLE: "Acala-EVM",
+      inject: true,
+      template: path.join(context, `${hasPublic ? "public/" : ""}index.html`),
+    }),
+  ],
+});
+
+console.log(path.join(context, `${hasPublic ? "public/" : ""}index.html`));

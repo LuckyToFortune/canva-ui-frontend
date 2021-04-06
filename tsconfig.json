@@ -5,6 +5,7 @@
     "**/build/**/*"
   ],
   "compilerOptions": {
+    "sourceMap": true,
     "jsx": "react",
     "baseUrl": ".",
     "paths": {
