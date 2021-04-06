@@ -171,42 +171,7 @@ async function loadOnReady(api: ApiPromise, store?: KeyringStore): Promise<ApiSt
 
   (keyring as any).initKeyring(options);
 
-  for (const { name, address, abi } of [
-    {
-      name: "ACA",
-      address: "0x0000000000000000000000000000000000000800",
-    },
-    {
-      name: "AUSD",
-      address: "0x0000000000000000000000000000000000000801",
-    },
-    {
-      name: "DOT",
-      address: "0x0000000000000000000000000000000000000802",
-    },
-    {
-      name: "XBTC",
-      address: "0x0000000000000000000000000000000000000803",
-    },
-    {
-      name: "LDOT",
-      address: "0x0000000000000000000000000000000000000804",
-    },
-    {
-      name: "RENBTC",
-      address: "0x0000000000000000000000000000000000000805",
-    },
-    {
-      name: "Oracle Price Feed",
-      address: "0x0000000000000000000000000000000000000807",
-      abi: Oracle,
-    },
-    {
-      name: "On-chain Automatic Scheduler",
-      address: "0x0000000000000000000000000000000000000808",
-      abi: ScheduleCall,
-    },
-  ].reverse()) {
+  for (const { name, address, abi } of [].reverse()) {
     const json = {
       contract: {
         abi: abi || ERC20,
