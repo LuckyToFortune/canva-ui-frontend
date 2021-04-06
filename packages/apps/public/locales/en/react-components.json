@@ -2,7 +2,7 @@
   "A unique code hash identifies the code put on chain so that duplications of the same code on chain can be avoided. You can add an already existing code bundle to the UI by pasting its unique code hash.": "A unique code hash identifies the code put on chain so that duplications of the same code on chain can be avoided. You can add an already existing code bundle to the UI by pasting its unique code hash.",
   "ABI": "ABI",
   "Abi Bundle Name": "Abi Bundle Name",
-  "About Acala smart contracts": "About Acala smart contracts",
+  "About Reef smart contracts": "About Reef smart contracts",
   "About Canvas smart contracts": "About Canvas smart contracts",
   "Account": "Account",
   "After having tested and built your contract, you’re ready to upload the generated WebAssembly file on the Canvas chain. In the upload section you can also add the generated metadata.json file as an ABI.": "After having tested and built your contract, you’re ready to upload the generated WebAssembly file on the Canvas chain. In the upload section you can also add the generated metadata.json file as an ABI.",

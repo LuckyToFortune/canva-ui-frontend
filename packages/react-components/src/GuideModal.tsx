@@ -32,7 +32,7 @@ function GuideModal({ className, onClose }: Props): React.ReactElement<Props> {
   const decrementIndex = useCallback((): void => setIndex(index - 1), [index]);
 
   const _setIndex = useCallback((index: number): (() => void) => {
-    return function() {
+    return function () {
       setIndex(index);
     };
   }, []);
@@ -50,8 +50,8 @@ function GuideModal({ className, onClose }: Props): React.ReactElement<Props> {
             <p>...</p>
           </>
         ),
-        header: t<string>("About Acala smart contracts")
-      }
+        header: t<string>("About Reef smart contracts"),
+      },
     ],
     [t]
   );
@@ -76,7 +76,7 @@ function GuideModal({ className, onClose }: Props): React.ReactElement<Props> {
             }
           )}
         </div>
-      </>
+      </>,
     ];
   }, [index, pages, _setIndex]);
 

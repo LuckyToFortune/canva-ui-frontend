@@ -18,7 +18,7 @@ module.exports = merge(baseConfig(ENV, context), {
   devtool: "source-map",
   plugins: [
     new HtmlWebpackPlugin({
-      PAGE_TITLE: "Acala-EVM",
+      PAGE_TITLE: "Reef EVM - Canvas UI",
       inject: true,
       template: path.join(context, `${hasPublic ? "public/" : ""}index.html`),
     }),

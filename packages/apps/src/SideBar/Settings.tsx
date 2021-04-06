@@ -24,13 +24,13 @@ function Settings({ className }: Props): React.ReactElement<Props> {
   return (
     <div>
       <div style={{ position: "fixed", bottom: "95px", left: "20px" }}>
-        <a href="https://wiki.acala.network/learn/basics/acala-evm" target="_blank">
+        <a href="https://docs.reef.finance/docs/prologue/introduction/" target="_blank">
           Docs
         </a>
       </div>
       <div style={{ position: "fixed", bottom: "65px", left: "20px" }}>
-        <a href="https://discord.com/invite/vdbFVCH" target="_blank">
-          Support Discord
+        <a href="https://app.element.io/#/room/#reef:matrix.org" target="_blank">
+          Matrix.org support channel
         </a>
       </div>
       <div className={`apps--SideBar-settings ${className || ""}`}>

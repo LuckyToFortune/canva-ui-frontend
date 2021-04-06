@@ -23,14 +23,14 @@ function createDev(t: TFunction): LinkOption[] {
 function createLive(t: TFunction): LinkOption[] {
   return [
     {
-      dnslink: "acala",
-      info: "acala",
-      shortText: t<string>("Acala Evm Test", { ns: "apps-config" }),
-      text: t<string>("rpc.hosted.by", "Acala", {
+      dnslink: "reef",
+      info: "reef",
+      shortText: t<string>("Maldives V1", { ns: "apps-config" }),
+      text: t<string>("rpc.hosted.by", "Reef", {
         ns: "apps-config",
-        replace: { host: "Acala" },
+        replace: { host: "Reef" },
       }),
-      value: "wss://mandala.laminar.codes/ws",
+      value: "wss://rpc-testnet.reefscan.com/ws",
     },
   ];
 }

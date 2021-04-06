@@ -163,11 +163,11 @@ export default React.memo(function EvmAccount({ navigateTo }: Props): React.Reac
         <h1>{t<string>("Setup EVM Account")}</h1>
         <div className="instructions">
           {t<string>(
-            "Bind an EVM account to your Substrate account, so that you can use a single account for any transactions on Acala. "
+            "Bind an EVM account to your Substrate account, so that you can use a single account for any transactions on the Reef chain."
           )}
           <a
             target="_blank"
-            href={"https://wiki.acala.network/learn/basics/acala-evm/acala-evm-composable-defi-stack/evm-account"}
+            href={"https://docs.reef.finance/docs/developers/accounts/#linking-an-existing-ethereum-address"}
           >
             {" "}
             Read more.
@@ -198,7 +198,7 @@ export default React.memo(function EvmAccount({ navigateTo }: Props): React.Reac
             helpText={!!isClaimed ? `${isClaimed} is already bound to this account` : ""}
             value={accountId}
           />
-          {systemChain === "Acala Mandala TC6" ? (
+          {systemChain === "Faucet chain" ? (
             <div style={{ display: "flex", marginTop: "16px", alignItems: "center" }}>
               <div style={{ marginRight: "16px" }}>
                 <Button
@@ -218,7 +218,7 @@ export default React.memo(function EvmAccount({ navigateTo }: Props): React.Reac
           <span style={{ marginBottom: "20px", display: "inline-block" }}>
             You can bind an auto-generated EVM address or an existing EVM account. Read more{" "}
             <a
-              href="https://app.gitbook.com/@acala/s/wiki/learn/basics/acala-evm/acala-evm-composable-defi-stack/single-account"
+              href="https://docs.reef.finance/docs/developers/accounts/#generating-a-default-evm-address"
               target="_blank"
             >
               here
@@ -257,7 +257,7 @@ export default React.memo(function EvmAccount({ navigateTo }: Props): React.Reac
             <span>
               This feature is coming soon, read how it works{" "}
               <a
-                href="https://app.gitbook.com/@acala/s/wiki/learn/basics/acala-evm/acala-evm-composable-defi-stack/evm-account#2-bind-an-existing-ethereum-account"
+                href="https://docs.reef.finance/docs/developers/accounts/#linking-an-existing-ethereum-address"
                 target="_blank"
               >
                 here
