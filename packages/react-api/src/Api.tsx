@@ -173,8 +173,22 @@ async function loadOnReady(api: ApiPromise, store?: KeyringStore): Promise<ApiSt
 
   for (const { name, address, abi } of [
     {
-      name: "REEF ERC-20",
-      address: "0x0000000000000000000000000000000000000800",
+      name: "REEF",
+      address: "0x0000000000000000000000000000000001000000",
+    },
+    {
+      name: "RUSD",
+      address: "0x0000000000000000000000000000000001000001",
+    },
+    {
+      name: "Oracle",
+      address: "0x0000000000000000000000000000000000000801",
+      abi: Oracle,
+    },
+    {
+      name: "On-chain Automatic Scheduler",
+      address: "0x0000000000000000000000000000000000000802",
+      abi: ScheduleCall,
     },
   ].reverse()) {
     const json = {
