@@ -16,7 +16,7 @@ import { TokenUnit } from "@canvas-ui/react-components/InputNumber";
 import keyring from "@polkadot/ui-keyring";
 import * as defaults from "@polkadot/ui-keyring/defaults";
 import { KeyringStore } from "@polkadot/ui-keyring/types";
-import { options } from "@acala-network/api";
+import { options } from "@reef-defi/api";
 
 import uiSettings from "@polkadot/ui-settings";
 import ApiSigner from "@canvas-ui/react-signer/ApiSigner";
