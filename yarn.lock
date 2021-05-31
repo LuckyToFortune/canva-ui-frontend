@@ -1903,7 +1903,7 @@ __metadata:
     "@polkadot/extension-dapp": ^0.26.0-beta.26
     "@reef-defi/api": ^0.1.6
     "@reef-defi/api-derive": ^0.1.6
-    "@reef-defi/evm-provider": ^0.1.7
+    "@reef-defi/evm-provider": ^0.1.8
     "@reef-defi/type-definitions": ^0.1.6
     "@reef-defi/types": ^0.1.6
     rxjs-compat: ^6.5.5
@@ -3810,9 +3810,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@reef-defi/evm-provider@npm:^0.1.7":
-  version: 0.1.7
-  resolution: "@reef-defi/evm-provider@npm:0.1.7"
+"@reef-defi/evm-provider@npm:^0.1.8":
+  version: 0.1.8
+  resolution: "@reef-defi/evm-provider@npm:0.1.8"
   dependencies:
     "@open-web3/dev-config": ^0.1.10
     "@open-web3/indexer": ^0.9.2-0
@@ -3824,7 +3824,7 @@ __metadata:
     "@types/chai": ^4.2.14
     blakejs: ^1.1.0
     ethers: ^5.0.21
-  checksum: 67087db0298ff92d2e1f2afa8147b08a95dbbeb1933d8ce10dfb0c7d531eabbfc9b8c170e8998024f8507d7edf73cd25452d2cc0e723567a3ca680748afad278
+  checksum: cca7c9a1d2d6a4a3d0ccafa1a4cdf18800daae9ce34bd250c1853ff7a0e478a71e7577fa122d5460d268e5487cb6185deb70d726def711e193b5ce02d4d1ca28
   languageName: node
   linkType: hard
 

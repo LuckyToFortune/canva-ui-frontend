@@ -38,7 +38,7 @@
     "@polkadot/extension-dapp": "^0.26.0-beta.26",
     "@reef-defi/api": "^0.1.6",
     "@reef-defi/api-derive": "^0.1.6",
-    "@reef-defi/evm-provider": "^0.1.7",
+    "@reef-defi/evm-provider": "^0.1.8",
     "@reef-defi/type-definitions": "^0.1.6",
     "@reef-defi/types": "^0.1.6",
     "rxjs-compat": "^6.5.5"
