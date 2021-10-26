@@ -281,18 +281,12 @@ function Api({ children, store, url }: Props): React.ReactElement<Props> | null 
 
   // initial initialization
   useEffect((): void => {
-    const provider = new WsProvider(url);
-    const signer = new ApiSigner(queuePayload, queueSetTxStatus);
-
-    const apiOptions = options({
-      provider,
-      registry,
-      signer,
-      typesChain,
-      typesSpec,
+    const evmProvider = new Provider({
+      provider: new WsProvider(url),
     });
 
-    api = new ApiPromise(apiOptions);
+    setEvmProvider(evmProvider);
+    api = evmProvider.api;
 
     api.on("connected", () => setIsApiConnected(true));
     api.on("disconnected", () => setIsApiConnected(false));
@@ -311,15 +305,6 @@ function Api({ children, store, url }: Props): React.ReactElement<Props> | null 
       .then((extensions) => {
         setExtensions(extensions);
         setAccountSigner(extensions[0]?.signer);
-        setEvmProvider(
-          new Provider(
-            options({
-              provider,
-              registry,
-              signer: new TestingSigner(registry, extensions[0]?.signer as any),
-            })
-          )
-        );
       })
       .catch((error) => console.error(error));
 

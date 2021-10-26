@@ -35,7 +35,7 @@ function createLive(t: TFunction): LinkOption[] {
     {
       dnslink: "reef",
       info: "reef",
-      shortText: t<string>("Testnet (Maldives)", { ns: "apps-config" }),
+      shortText: t<string>("Testnet", { ns: "apps-config" }),
       text: t<string>("rpc.hosted.by", "Reef", {
         ns: "apps-config",
         replace: { host: "Reef" },
