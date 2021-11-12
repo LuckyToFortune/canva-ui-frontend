@@ -4,7 +4,7 @@
 import { Provider } from "@reef-defi/evm-provider";
 import { ApiPromise } from "@polkadot/api/promise";
 import { SubmittableExtrinsicFunction } from "@polkadot/api/promise/types";
-import { InjectedExtension } from "@polkadot/extension-inject/types";
+import { InjectedExtension } from "@reef-defi/extension-inject/types";
 import { Signer as InjectedSigner } from "@polkadot/api/types";
 
 // helpers for HOC props

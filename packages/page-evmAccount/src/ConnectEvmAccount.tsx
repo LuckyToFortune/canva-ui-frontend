@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import { Signer as EvmSigner } from "@reef-defi/evm-provider";
+import { web3FromSource } from "@reef-defi/extension-dapp";
 import { ComponentProps as Props } from "@canvas-ui/apps/types";
 import { Button, InputAddress, Input, Toggle, InputEvmAddress } from "@canvas-ui/react-components";
 import { testAccount } from "@canvas-ui/react-components/InputEvmAddress/testAccount";
@@ -25,8 +26,22 @@ export default React.memo(function EvmAccount({ navigateTo }: Props): React.Reac
   const [isClaimed, setIsClaimed] = useState("");
   const [isClaimedEvm, setIsClaimedEvm] = useState("");
   const [i, update] = useReducer((x) => x + 1, 0);
-  const { hasInjectedAccounts, evmProvider, accountSigner, api, systemChain } = useApi();
+  const [accountSigner, setAccountSigner] = useState<any>(null);
+  const { evmProvider, api, systemChain } = useApi();
   const showNotification = useNotification();
+
+  useEffect(() => {
+    if (accountId) {
+      const pair = keyring.getPair(accountId);
+      const meta = (pair && pair.meta) || {};
+      web3FromSource(meta.source as string)
+        .catch((): null => null)
+        .then((injected) => setAccountSigner(injected?.signer))
+        .catch(console.error);
+    } else {
+      setAccountSigner(null);
+    }
+  }, [accountId]);
 
   useEffect(() => {
     if (accountId && evmProvider && evmProvider.api) {
@@ -109,6 +124,7 @@ export default React.memo(function EvmAccount({ navigateTo }: Props): React.Reac
         setIsSendingFaucet(false);
       });
   };
+
   const claimEVMAccount = async () => {
     if (!accountId || !evmProvider || (!isDefault && !accountEvmId)) {
       setIsSending(false);

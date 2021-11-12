@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import { Signer as EvmSigner } from "@reef-defi/evm-provider";
+import { web3FromSource } from "@reef-defi/extension-dapp";
 import { Code } from "@canvas-ui/apps/types";
 import { Button, ContractParams, InputAddress, InputName, InputNumber, Labelled } from "@canvas-ui/react-components";
 import { ELEV_2_CSS } from "@canvas-ui/react-components/styles/constants";
@@ -37,7 +38,8 @@ function New({ allCodes, className, navigateTo }: Props): React.ReactElement<Pro
   const [gasLimit, setGasLimit, isGasLimitValid] = useIntegerBn(GASLIMIT);
   const [name, setName, isNameValid, isNameError] = useNonEmptyString(t(defaultContractName(code?.name)));
   const { abi, bytecode } = useAbi(code);
-  const { evmProvider, accountSigner, api } = useApi();
+  const { evmProvider, api } = useApi();
+  const [accountSigner, setAccountSigner] = useState<any>(null);
   const [isSending, setIsSending] = useState(false);
   const showNotification = useNotification();
 
@@ -63,6 +65,19 @@ function New({ allCodes, className, navigateTo }: Props): React.ReactElement<Pro
       navigateTo.deploy();
     }
   }, [abi, navigateTo]);
+
+  useEffect(() => {
+    if (accountId) {
+      const pair = keyring.getPair(accountId);
+      const meta = (pair && pair.meta) || {};
+      web3FromSource(meta.source as string)
+        .catch((): null => null)
+        .then((injected) => setAccountSigner(injected?.signer))
+        .catch(console.error);
+    } else {
+      setAccountSigner(null);
+    }
+  }, [accountId]);
 
   const deploy = async () => {
     if (!accountId || !bytecode || !abi) return;
@@ -121,9 +136,7 @@ function New({ allCodes, className, navigateTo }: Props): React.ReactElement<Pro
   return (
     <div className={className}>
       <header>
-        <h1>
-          {t<string>("Deploy {{contractName}}", { replace: { contractName: code?.name || "Contract" } })}
-        </h1>
+        <h1>{t<string>("Deploy {{contractName}}", { replace: { contractName: code?.name || "Contract" } })}</h1>
         <div className="instructions">
           {t<string>(
             "Choose an account to deploy the contract from, give it a descriptive name and set the endowment amount."

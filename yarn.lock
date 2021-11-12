@@ -1605,10 +1605,10 @@ __metadata:
   dependencies:
     "@babel/runtime": ^7.15.2
     "@polkadot/api": ^6.3.1
-    "@polkadot/extension-dapp": ^0.40.4
     "@reef-defi/api": ^1.0.1
     "@reef-defi/api-derive": ^1.0.1
     "@reef-defi/evm-provider": ^1.0.1
+    "@reef-defi/extension-dapp": ^0.41.2
     "@reef-defi/type-definitions": ^1.0.1
     "@reef-defi/types": ^1.0.1
     rxjs: ^7.4.0
@@ -3378,33 +3378,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@polkadot/extension-dapp@npm:^0.40.4":
-  version: 0.40.4
-  resolution: "@polkadot/extension-dapp@npm:0.40.4"
-  dependencies:
-    "@babel/runtime": ^7.15.4
-    "@polkadot/extension-inject": ^0.40.4
-    "@polkadot/util": ^7.6.1
-    "@polkadot/util-crypto": ^7.6.1
-  peerDependencies:
-    "@polkadot/api": "*"
-    "@polkadot/util": "*"
-    "@polkadot/util-crypto": "*"
-  checksum: 96361daf09d0c5740913e9d4a2343efb78ee06cddef64838ba51cd5c609ef5425d4b0c93b1b20ea8026d8a053dff2da6aa149751d6e90debdd88ddcc0615e5d2
-  languageName: node
-  linkType: hard
-
-"@polkadot/extension-inject@npm:^0.40.4":
-  version: 0.40.4
-  resolution: "@polkadot/extension-inject@npm:0.40.4"
-  dependencies:
-    "@babel/runtime": ^7.15.4
-  peerDependencies:
-    "@polkadot/api": "*"
-  checksum: 2226145c75cdb4317db1a85fe69fb6ec1e9d5e0e3ff3cc49737beacde4c41008eb47c58e39942123c6124405cbbd61d5ef9961fae747e5f054d9042ddedb8bd0
-  languageName: node
-  linkType: hard
-
 "@polkadot/keyring@npm:^7.6.1":
   version: 7.7.1
   resolution: "@polkadot/keyring@npm:7.7.1"
@@ -3885,6 +3858,33 @@ __metadata:
     blakejs: ~1.1.0
     ethers: ~5.5.0
   checksum: 0bf1b0764e8fb370ac468f3010b394d7f84d05487fb4feb81839cff342b27776764f25b187ee511027923b4c10748bdaedf1eb02e03a3e83a17fc122a0ba5d54
+  languageName: node
+  linkType: hard
+
+"@reef-defi/extension-dapp@npm:^0.41.2":
+  version: 0.41.2
+  resolution: "@reef-defi/extension-dapp@npm:0.41.2"
+  dependencies:
+    "@babel/runtime": ^7.15.4
+    "@polkadot/util": ^7.8.2
+    "@polkadot/util-crypto": ^7.8.2
+    "@reef-defi/extension-inject": ^0.41.2
+  peerDependencies:
+    "@polkadot/api": "*"
+    "@polkadot/util": "*"
+    "@polkadot/util-crypto": "*"
+  checksum: 4ec7836ad2db3182ba758fc770993208f2fbf4e727f198064d84d8c8f13312b7ca6c0986727da57fd886cb27e83aeef89c4a0fd476d90142cc226ec89e83807e
+  languageName: node
+  linkType: hard
+
+"@reef-defi/extension-inject@npm:^0.41.2":
+  version: 0.41.2
+  resolution: "@reef-defi/extension-inject@npm:0.41.2"
+  dependencies:
+    "@babel/runtime": ^7.15.4
+  peerDependencies:
+    "@polkadot/api": "*"
+  checksum: e4b81abdd607b862a11fc84dbe6556985d00f37477bf72b9f9ecd00f24589f9c34fea1dd35b2171a9b416107da0f8002baeeb3e1817ad5d0323bf94b08955b6b
   languageName: node
   linkType: hard
 

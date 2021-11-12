@@ -1,7 +1,7 @@
 // Copyright 2017-2020 @canvas-ui/react-api authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { InjectedExtension } from "@polkadot/extension-inject/types";
+import { InjectedExtension } from "@reef-defi/extension-inject/types";
 import { ChainProperties, ChainType } from "@polkadot/types/interfaces";
 import { ApiProps, ApiState } from "./types";
 
@@ -9,7 +9,7 @@ import React, { useContext, useEffect, useMemo, useState } from "react";
 import { ApiPromise } from "@polkadot/api/promise";
 import { setDeriveCache, deriveMapCache } from "@polkadot/api-derive/util";
 import { typesChain, typesSpec } from "@canvas-ui/apps-config/api";
-import { web3Accounts, web3Enable } from "@polkadot/extension-dapp";
+import { web3Accounts, web3Enable } from "@reef-defi/extension-dapp";
 import { WsProvider } from "@polkadot/rpc-provider";
 import { StatusContext } from "@canvas-ui/react-components/Status";
 import { TokenUnit } from "@canvas-ui/react-components/InputNumber";
@@ -71,52 +71,45 @@ let api: ApiPromise;
 export { api };
 
 async function retrieve(api: ApiPromise): Promise<ChainData> {
-  const [
-    properties,
-    systemChain,
-    systemChainType,
-    systemName,
-    systemVersion,
-    injectedAccounts,
-    evmAccounts,
-  ] = await Promise.all([
-    api.rpc.system.properties(),
-    api.rpc.system.chain(),
-    api.rpc.system.chainType ? api.rpc.system.chainType() : Promise.resolve(registry.createType("ChainType", "Live")),
-    api.rpc.system.name(),
-    api.rpc.system.version(),
-    injectedPromise
-      .then(() => web3Accounts())
-      .then((accounts) =>
-        accounts.map(
-          ({ address, meta }, whenCreated): InjectedAccountExt => ({
-            address,
-            meta: {
-              ...meta,
-              name: `${meta.name || "unknown"} (${meta.source === "polkadot-js" ? "extension" : meta.source})`,
-              whenCreated,
-            },
-          })
+  const [properties, systemChain, systemChainType, systemName, systemVersion, injectedAccounts, evmAccounts] =
+    await Promise.all([
+      api.rpc.system.properties(),
+      api.rpc.system.chain(),
+      api.rpc.system.chainType ? api.rpc.system.chainType() : Promise.resolve(registry.createType("ChainType", "Live")),
+      api.rpc.system.name(),
+      api.rpc.system.version(),
+      injectedPromise
+        .then(() => web3Accounts())
+        .then((accounts) =>
+          accounts.map(
+            ({ address, meta }, whenCreated): InjectedAccountExt => ({
+              address,
+              meta: {
+                ...meta,
+                name: `${meta.name || "unknown"} (${meta.source === "polkadot-js" ? "extension" : meta.source})`,
+                whenCreated,
+              },
+            })
+          )
         )
-      )
-      .catch((error): InjectedAccountExt[] => {
-        console.error("web3Enable", error);
+        .catch((error): InjectedAccountExt[] => {
+          console.error("web3Enable", error);
 
-        return [];
-      }),
-    injectedPromise
-      //@ts-ignore
-      .then((data) => {
+          return [];
+        }),
+      injectedPromise
         //@ts-ignore
-        return data[0]?.accounts.get(true) || [];
-      })
-      .then((data) => data.filter((i: any) => i.type === "ethereum"))
-      .catch((error): InjectedAccountExt[] => {
-        console.error("web3Enable", error);
+        .then((data) => {
+          //@ts-ignore
+          return data[0]?.accounts.get(true) || [];
+        })
+        .then((data) => data.filter((i: any) => i.type === "ethereum"))
+        .catch((error): InjectedAccountExt[] => {
+          console.error("web3Enable", error);
 
-        return [];
-      }),
-  ]);
+          return [];
+        }),
+    ]);
 
   return {
     injectedAccounts,
@@ -130,15 +123,8 @@ async function retrieve(api: ApiPromise): Promise<ChainData> {
 }
 
 async function loadOnReady(api: ApiPromise, store?: KeyringStore): Promise<ApiState> {
-  const {
-    injectedAccounts,
-    properties,
-    systemChain,
-    systemChainType,
-    systemName,
-    systemVersion,
-    evmAccounts,
-  } = await retrieve(api);
+  const { injectedAccounts, properties, systemChain, systemChainType, systemName, systemVersion, evmAccounts } =
+    await retrieve(api);
 
   setEvmAccounts(evmAccounts || []);
   const ss58Format =
@@ -258,7 +244,7 @@ async function loadOnReady(api: ApiPromise, store?: KeyringStore): Promise<ApiSt
 
 function Api({ children, store, url }: Props): React.ReactElement<Props> | null {
   const { queuePayload, queueSetTxStatus } = useContext(StatusContext);
-  const [state, setState] = useState<ApiState>(({ isApiReady: false } as unknown) as ApiState);
+  const [state, setState] = useState<ApiState>({ isApiReady: false } as unknown as ApiState);
   const [isApiConnected, setIsApiConnected] = useState(false);
   const [isApiInitialized, setIsApiInitialized] = useState(false);
   const [evmProvider, setEvmProvider] = useState<Provider | null>(null);
@@ -290,16 +276,13 @@ function Api({ children, store, url }: Props): React.ReactElement<Props> | null 
 
     api.on("connected", () => setIsApiConnected(true));
     api.on("disconnected", () => setIsApiConnected(false));
-    api.on(
-      "ready",
-      async (): Promise<void> => {
-        try {
-          setState(await loadOnReady(api, store));
-        } catch (error) {
-          console.error("Unable to load chain", error);
-        }
+    api.on("ready", async (): Promise<void> => {
+      try {
+        setState(await loadOnReady(api, store));
+      } catch (error) {
+        console.error("Unable to load chain", error);
       }
-    );
+    });
 
     injectedPromise
       .then((extensions) => {

@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import { Signer, SignerResult } from "@polkadot/api/types";
-import { Injected } from "@polkadot/extension-inject/types";
+import { Injected } from "@reef-defi/extension-inject/types";
 import { createTestPairs, TestKeyringMap } from "@polkadot/keyring/testingPairs";
 import type { Registry } from "@polkadot/types/types";
 import { SignerPayloadJSON } from "@polkadot/types/types";
