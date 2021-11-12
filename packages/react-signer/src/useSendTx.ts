@@ -13,7 +13,7 @@ import { AddressFlags, AddressProxy } from './types';
 import BN from 'bn.js';
 import { useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import { ApiPromise } from '@polkadot/api';
-import { web3FromSource } from '@polkadot/extension-dapp';
+import { web3FromSource } from '@reef-defi/extension-dapp';
 import { registry } from '@canvas-ui/react-api';
 import { StatusContext } from '@canvas-ui/react-components';
 import { useApi } from '@canvas-ui/react-hooks';

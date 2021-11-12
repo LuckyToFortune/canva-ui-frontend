@@ -3,6 +3,7 @@
 
 import { ComponentProps as Props } from "@canvas-ui/apps/types";
 import { Signer as EvmSigner } from "@reef-defi/evm-provider";
+import { web3FromSource } from "@reef-defi/extension-dapp";
 import { decodeAddress } from "@polkadot/util-crypto";
 import { keyring } from "@polkadot/ui-keyring";
 import {
@@ -36,18 +37,23 @@ const emptyArray: any = [];
 
 function getCallMessageOptions(callContract: Contract | null): Options {
   return callContract
-    ? Object.keys(callContract.interface.functions).map((key, index): {
-        key: string;
-        text: React.ReactNode;
-        value: number;
-      } => {
-        const message = callContract.interface.functions[key];
-        return {
+    ? Object.keys(callContract.interface.functions).map(
+        (
           key,
-          text: <MessageSignature message={message} registry={callContract.registry} />,
-          value: index,
-        };
-      })
+          index
+        ): {
+          key: string;
+          text: React.ReactNode;
+          value: number;
+        } => {
+          const message = callContract.interface.functions[key];
+          return {
+            key,
+            text: <MessageSignature message={message} registry={callContract.registry} />,
+            value: index,
+          };
+        }
+      )
     : emptyArray;
 }
 
@@ -56,7 +62,8 @@ const GASLIMIT = new BN("300000000");
 
 function Call({ className, navigateTo }: Props): React.ReactElement<Props> | null {
   const pageParams: { address?: string; messageIndex?: string } = useParams();
-  const { api, evmProvider, accountSigner } = useApi();
+  const { api, evmProvider } = useApi();
+  const [accountSigner, setAccountSigner] = useState<any>(null);
   const { t } = useTranslation();
   const { name } = useContractAccountInfo(pageParams.address?.toString() || null, true);
 
@@ -114,6 +121,19 @@ function Call({ className, navigateTo }: Props): React.ReactElement<Props> | nul
   useEffect((): void => {
     setOutcomes([]);
   }, [contract]);
+
+  useEffect(() => {
+    if (accountId) {
+      const pair = keyring.getPair(accountId);
+      const meta = (pair && pair.meta) || {};
+      web3FromSource(meta.source as string)
+        .catch((): null => null)
+        .then((injected) => setAccountSigner(injected?.signer))
+        .catch(console.error);
+    } else {
+      setAccountSigner(null);
+    }
+  }, [accountId]);
 
   const _onSubmitRpc = useCallback(async () => {
     if (!accountId || !contract || !payment || !gasLimit) return;
@@ -229,9 +249,7 @@ function Call({ className, navigateTo }: Props): React.ReactElement<Props> | nul
   return (
     <div className={className}>
       <header>
-        <h1>
-          {t<string>("Execute {{name}}", { replace: { name } })}
-        </h1>
+        <h1>{t<string>("Execute {{name}}", { replace: { name } })}</h1>
         <div className="instructions">
           {t<string>("Using the unique code hash you can add on-chain contract code for you to deploy.")}
         </div>

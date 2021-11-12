@@ -12,7 +12,7 @@ function Success({ allCodes, basePath, navigateTo }: any): React.ReactElement<an
   const { accountId }: { accountId: string } = useParams();
   const [evmAccount, setEvmAccount] = useState("");
   const { t } = useTranslation();
-  const { hasInjectedAccounts, evmProvider, accountSigner, api, systemChain } = useApi();
+  const { hasInjectedAccounts, evmProvider, api, systemChain } = useApi();
 
   useEffect(() => {
     if (accountId && evmProvider && evmProvider.api) {
